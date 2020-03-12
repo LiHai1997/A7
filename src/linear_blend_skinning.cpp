@@ -9,6 +9,18 @@ void linear_blend_skinning(
 {
   /////////////////////////////////////////////////////////////////////////////
   // Replace with your code
-  U = V;
+  U.resize(V.rows(), 3);
+  for(int i=0; i < V.rows(); i++){
+    Eigen::Vector4d v = Eigen::Vector4d(V(i, 0), V(i, 1), V(i, 2), 1);
+    Eigen::Vector4d u = Eigen::Vector4d::Zero();
+    for(int j=0; j < skeleton.size(); j++){
+      if(skeleton[j].weight_index != -1){
+        u += W(i, skeleton[j].weight_index) * (T[j] * v);
+      }
+    }
+    for (int k =0; k < 3; k++){
+      U(i, k) = u(k)/u(3);
+    }
+  }
   /////////////////////////////////////////////////////////////////////////////
 }

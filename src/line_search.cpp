@@ -10,6 +10,17 @@ double line_search(
 {
   /////////////////////////////////////////////////////////////////////////////
   // Replace with your code
-  return 0;
+
+  double a = max_step; 
+  double E = f(z);
+
+  Eigen::VectorXd z_m = z - a * dz;
+  proj_z(z_m);
+  while (f(z_m) > E){
+    a *= 0.5;
+    z_m = z - a * dz;
+    proj_z(z_m);
+  }
+  return a;
   /////////////////////////////////////////////////////////////////////////////
 }
