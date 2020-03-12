@@ -15,10 +15,10 @@ Eigen::VectorXd transformed_tips(
 
   for (int i = 0; i < b.size(); i++){
     int index = b[i];
-    Eigen::Vector4d tip_or = Eigen::Vector4d(skeleton[index].length,0,0,1);
-    Eigen::Vector4d tip_tr = T[index] * skeleton[index].rest_T * tip_o;
+    Eigen::Vector4d tip_ori = Eigen::Vector4d(skeleton[index].length,0,0,1);
+    Eigen::Vector4d tip_tra = T[index] * skeleton[index].rest_T * tip_ori;
     for(int j =0; j < 3; j++){
-      tips[i*3 + j] = tip_tr[j];
+      tips[i*3 + j] = tip_tra[j];
     }
   }
   return tips;
