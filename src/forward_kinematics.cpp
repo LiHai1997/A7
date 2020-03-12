@@ -10,7 +10,7 @@ Eigen::Affine3d pose_thransf(
     return Eigen::Affine3d::Identity();
   }else{
     Eigen::Affine3d parent_pose_thransf = pose_thransf(skeleton, skeleton[i].parent_index);
-    Eigen::Affine3d rest_T = skeleton[i].skeleton.rest_T;
+    Eigen::Affine3d rest_T = skeleton[i].rest_T;
     Eigen::Affine3d rot = euler_angles_to_transform(skeleton[i].xzx);
     return parent_pose_thransf * rest_T * rot * rest_T.inverse();
   }
